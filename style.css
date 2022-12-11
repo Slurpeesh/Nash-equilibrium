@@ -1,0 +1,77 @@
+/*универсальные селекторы*/
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+
+body {
+  margin: 0;
+  background-color: lightgray;
+  margin-bottom: 20px;
+}
+
+header {
+  margin: 0 0;
+  background-color:rgb(157, 168, 181);
+  padding: 1.3vw;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+  text-align: center;
+  }
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+input {
+  width: 30px;
+  height: 22px;
+  font-size: 18px;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  }
+
+button {
+  margin-left: 20px;
+  font-size: 0.8rem;
+  }
+
+p {
+  text-align: center;
+}
+
+/*селекторы классов*/
+.matrix {
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+/*цвета ячеек с классом equilibrium*/
+.equilibrium {
+  background-color: lightgreen;
+}
+
+/*цвета ячеек с классом errorCell*/
+.errorCell {
+  background-color: tomato;
+}
+
+/*селекторы идентификаторов*/
+#findButton {
+  margin: 0 auto;
+  margin-top: 40px;
+  display: block;
+}
+
+/*стилизация ввода размерностей, чтобы не было разрыва при сужении или расширении экрана*/
+#dimensions {
+  display: inline-block;
+}
