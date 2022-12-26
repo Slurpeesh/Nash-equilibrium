@@ -15,6 +15,43 @@ function checkInput() {
     return true;
   };
 
+//функция, находящая все ошибки в заполнении матриц
+function findAllErrors(m, i, j) {
+    //допроверка строки i
+    for (j_=j; j_ < cols; j_++) {
+        let cell = document.getElementById(`${m}/${i}/${j_}`);
+        cell = Number(cell.value);
+        if (isNaN(cell)) {
+            let cell = document.getElementById(`${m}/${i}/${j_}`);
+            cell.setAttribute("class", "errorCell");
+        };
+    };
+    //допроверка матрицы m
+    for (i_=i+1; i_ < rows; i_++) {
+        for (j_=0; j_ < cols; j_++) {
+            let cell = document.getElementById(`${m}/${i_}/${j_}`);
+            cell = Number(cell.value);
+            if (isNaN(cell)) {
+                let cell = document.getElementById(`${m}/${i_}/${j_}`);
+                cell.setAttribute("class", "errorCell");
+            };
+        };
+    };
+    //допроверка остальных матриц
+    for (m_=m+1; m_ < 3; m_++) {
+        for (i_=0; i_ < rows; i_++) {
+            for (j_=0; j_ < cols; j_++) {
+                let cell = document.getElementById(`${m_}/${i_}/${j_}`);
+                cell = Number(cell.value);
+                if (isNaN(cell)) {
+                    let cell = document.getElementById(`${m_}/${i_}/${j_}`);
+                    cell.setAttribute("class", "errorCell");
+                };
+            };
+        };
+    };
+};
+
 //функция, проверяющая правильность заполненности ячеек матриц, а также создающая глобальный объект, содержащий эти матрицы для рассчетов
 function checkMatrices() {
     matrices_object = {};
@@ -26,8 +63,8 @@ function checkMatrices() {
                 let cell = document.getElementById(`${m}/${i}/${j}`);
                 cell = Number(cell.value);
                 if (isNaN(cell)) {
-                    let cell = document.getElementById(`${m}/${i}/${j}`);
-                    cell.setAttribute("class", "errorCell");
+                    resetStyles();
+                    findAllErrors(m, i, j);
                     return false;
                 };
                 row.push(cell);
@@ -106,9 +143,10 @@ function createMatrices() {
     container2.appendChild(para2);
     container2.appendChild(matrix2);
     //вывод элементов в html документ
-    document.body.append(container1);
-    document.body.append(container2);
-    document.body.append(findButton);
+    let mainBlock = document.querySelector("main");
+    mainBlock.append(container1);
+    mainBlock.append(container2);
+    mainBlock.append(findButton);
   };
 
 //вспомогательная функция, возвращающая n-ый столбец матрицы
@@ -125,7 +163,7 @@ function getMaxOfArray(array) {
     return Math.max.apply(null, array);
 };
 
-//фуекция, возвращающая пересечение двух массивов
+//функция, возвращающая пересечение двух массивов
 function intersection(array1, array2) {
     intersectionArray = [];
     for (i=0; i < array1.length; i++) {
