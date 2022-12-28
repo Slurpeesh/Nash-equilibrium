@@ -10,10 +10,16 @@ function checkInput() {
     if (isNaN(rows) || isNaN(cols)) {
         rowsEl.value = "";
         colsEl.value = "";
-        return false;
+        alert("Неправильно введены значения размерности матрицы");
+        throw new Error("Неправильно введены значения размерности матрицы");
     };
-    return true;
-  };
+    if (rows * cols > 40000) {
+        rowsEl.value = "";
+        colsEl.value = "";
+        alert("Слишком большая размерность матрицы");
+        throw new Error("Большая размерность матрицы");
+    };
+};
 
 //функция, находящая все ошибки в заполнении матриц
 function findAllErrors(m, i, j) {
@@ -65,7 +71,8 @@ function checkMatrices() {
                 if (isNaN(cell)) {
                     resetStyles();
                     findAllErrors(m, i, j);
-                    return false;
+                    alert("Неправильно введены значения матрицы");
+                    throw new Error("Неправильно введены значения матрицы");
                 };
                 row.push(cell);
             };
@@ -73,7 +80,6 @@ function checkMatrices() {
         };
         matrices_object[`matrix_array${m}`] = matrix;
     };
-    return true;
 };
 
 //функция, удаляющая элемент матрицы из html документа
@@ -90,10 +96,7 @@ function clearMatrices() {
 
 //функция, создающая матрицы
 function createMatrices() {
-    if (!checkInput()) {
-        alert("Неправильно введены данные");
-        throw new Error("Неправильно введены данные");
-    };
+    checkInput();
     clearMatrices();
     //создание заголовков
     let para1 = document.createElement("h2");
@@ -203,10 +206,7 @@ function markUpGreen(indices_array) {
 //алгоритм нахождения равновесий Нэша в биматричной игре
 function equilibriumNash() {
     //проверка на правильность заполненности ячеек матриц
-    if (!checkMatrices()) {
-        alert("Неправильно введены значения матрицы");
-        throw new Error("Неправильно введены значения матрицы");
-    };
+    checkMatrices();
     //обнуление стилей
     resetStyles();
     //множества, хранящие индексы оптимальных ходов каждого из игроков

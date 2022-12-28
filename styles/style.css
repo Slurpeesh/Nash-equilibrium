@@ -16,9 +16,12 @@ body {
 }
 
 header {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
   margin: 0 0;
   background-color:rgb(157, 168, 181);
-  padding: 1.3vw;
+  padding: 0.5vw;
 }
 
 main {
@@ -27,6 +30,7 @@ main {
 }
 
 footer {
+  display: flex;
   margin: 0 0;
   background-color: rgb(148, 159, 171);
   padding: 1.3vw;
@@ -34,8 +38,10 @@ footer {
 }
 
 h1 {
+  flex: 5;
   margin: 0;
-  font-size: 40px;
+  margin-right: 5vw;
+  font-size: calc(30px + 1.3vw);
   text-align: center;
   }
 
@@ -63,11 +69,21 @@ p {
   text-align: center;
 }
 
+footer > a {
+  width: calc(0.75rem + 2vw);
+  height: calc(0.75rem + 2vw);
+}
+
 /*селекторы классов*/
 .matrix {
   justify-content: center;
   justify-items: center;
   align-items: center;
+}
+
+.social_link {
+  width: calc(0.75rem + 2vw);
+  height: calc(0.75rem + 2vw);
 }
 
 /*цвета ячеек с классом equilibrium*/
@@ -90,4 +106,9 @@ p {
 /*стилизация ввода размерностей, чтобы не было разрыва при сужении или расширении экрана*/
 #dimensions {
   display: inline-block;
+}
+
+#logo{
+  width: calc(1.5rem + 3vw);
+  height: calc(1.5rem + 3vw);
 }
