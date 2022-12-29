@@ -13,7 +13,7 @@ function checkInput() {
         alert("Неправильно введены значения размерности матрицы");
         throw new Error("Неправильно введены значения размерности матрицы");
     };
-    if (rows * cols > 40000) {
+    if (rows * cols > 10000) {
         rowsEl.value = "";
         colsEl.value = "";
         alert("Слишком большая размерность матрицы");
