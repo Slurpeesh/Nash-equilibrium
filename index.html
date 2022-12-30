@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="name" content="Slurpeesh">
@@ -12,20 +12,31 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="shortcut icon" href="media/favicon_oldstyle.ico" type="image/x-icon">
     <link rel="icon" href="media/favicon.svg">
+    <link rel="stylesheet" href="styles/normalize.css">
     <link href="styles/style.css" rel="stylesheet" type="text/css">
-    <title>Равновесие Нэша</title>
+    <title>Nash equilibrium</title>
 </head>
 <body>
     <header>
-        <img id="logo" src="media/favicon 512x512.png" alt="logo: 4 cells, 2 of them are green" title="Nash equilibrium" srcset="media/favicon.svg">
-        <h1>Равновесие Нэша</h1>
+        <img id="logo" src="media/favicon 512x512.png" alt="logo: 4 cells, 2 of them are green" title="Nash equilibrium logo" srcset="media/favicon.svg">
+        <h1 class="lang-title">Nash equilibrium</h1>
+        <select>
+            <option value="en">en</option>
+            <option value="ru">ru</option>
+        </select>
     </header>
     <main>
-        <p>Введите размерность матрицы: <span id="dimensions"><span id="dimensions-container"><input id="rows" type="text"> &times; <input id="columns" type="text"></span></span><button>Принять</button></p>
+        <div id="dimensionsAll">
+            <span id="dimensions-wrapper">
+                <p class="lang-sizeInput">Please, input size of a matrix: </p>
+                <span id="dimensions"><span id="dimensions-container"><input id="rows" type="text"> &times; <input id="columns" type="text"></span></span><button class="lang-accept">Accept</button>
+            </span>
+        </div>
     </main>
     <footer>
         <a href="https://github.com/Slurpeesh" target="_blank"><img class="social_link" src="media/github-mark.png" alt="GitHub account of the creator" title="GitHub account of the creator" srcset="media/github-mark.svg"></a>
     </footer>
+    <script src="scripts/lang.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 </html>

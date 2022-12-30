@@ -1,6 +1,7 @@
 let acceptButton = document.querySelector("button");
 let rowsEl = document.getElementById("rows");
 let colsEl = document.getElementById("columns");
+let langSelect = document.querySelector("select");
 
 //функция проверяет правильность ввода размерности матрицы, если данные введены верно, то возвращает true, иначе false
 function checkInput() {
@@ -98,11 +99,15 @@ function clearMatrices() {
 function createMatrices() {
     checkInput();
     clearMatrices();
+    //языковая адаптация
+    let lang = langSelect.value;
     //создание заголовков
     let para1 = document.createElement("h2");
-    para1.textContent = "Матрица выигрышей первого игрока";
+    para1.setAttribute("class", "lang-matrix1");
+    para1.textContent = langArr["matrix1"][lang];
     let para2 = document.createElement("h2");
-    para2.textContent = "Матрица выигрышей второго игрока"
+    para2.setAttribute("class", "lang-matrix2");
+    para2.textContent = langArr["matrix2"][lang];
     //создание блоков, содержащих матрицы с их заголовками
     let container1 = document.createElement("div");
     let container2 = document.createElement("div");
@@ -137,7 +142,8 @@ function createMatrices() {
     //создание кнопки для нахождения равновесий Нэша
     let findButton = document.createElement("button");
     findButton.setAttribute("id", "findButton");
-    findButton.textContent = "Найти равновесия Нэша";
+    findButton.setAttribute("class", "lang-findEquilibrium")
+    findButton.textContent = langArr["findEquilibrium"][lang];
     //привязываем слушатель событий при создании кнопки, которая находит равновесия Нэша
     findButton.addEventListener("click", equilibriumNash);
     //формирование блоков, содержащих матрицы с заголовками
@@ -242,5 +248,19 @@ function equilibriumNash() {
     markUpGreen(equilibriums);
 };
 
+//функция, которая меняет язык
+function changeLanguage() {
+    let lang = langSelect.value;
+    document.title = langArr["title"][lang];
+    for (key in langArr) {
+        let elem = document.querySelector(`.lang-${key}`);
+        if (elem != null) {
+            elem.textContent = langArr[key][lang];
+        };
+    };
+};
+
 //слушатель на нажатие кнопки "Принять"
 acceptButton.addEventListener("click", createMatrices);
+//слушатель смены языков
+langSelect.addEventListener("change", changeLanguage);

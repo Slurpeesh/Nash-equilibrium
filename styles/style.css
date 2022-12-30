@@ -41,7 +41,7 @@ footer {
 h1 {
   flex: 5;
   margin: 0;
-  margin-right: 5vw;
+  margin-right: 3vw;
   font-size: calc(30px + 1.3vw);
   text-align: center;
   }
@@ -67,9 +67,14 @@ button {
   vertical-align: middle;
 }
 
+select > option:hover {
+  background-color: green;
+}
+
 p {
   font-size: calc(10px + 1vw);
   text-align: center;
+  line-height: 1cm;
 }
 
 footer > a {
@@ -107,6 +112,10 @@ a > .social_link:hover {
   background-color: tomato;
 }
 
+.lang-sizeInput {
+  display: inline;
+}
+
 /*селекторы идентификаторов*/
 #findButton {
   display: block;
@@ -124,6 +133,15 @@ a > .social_link:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#dimensionsAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #rows,
