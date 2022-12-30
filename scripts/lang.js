@@ -5,7 +5,7 @@ const langArr = {
     },
 
     "sizeInput": {
-        "en": "Please, input size of a matrix:",
+        "en": "Please, input the size of a matrix:",
         "ru": "Введите размерность матрицы:"
     },
 
@@ -27,5 +27,20 @@ const langArr = {
     "findEquilibrium": {
         "en": "Find Nash equilibrium",
         "ru": "Найти равновесие Нэша"
+    },
+
+    "matSizeError": {
+        "en": "Incorrectly entered values of the matrix dimension",
+        "ru": "Неправильно введены значения размерности матрицы"
+    },
+
+    "matValueError": {
+        "en": "Incorrectly entered matrix values",
+        "ru": "Неправильно введены значения матрицы"
+    },
+
+    "hugeMatSize": {
+        "en": "The size of a matrix is too big",
+        "ru": "Слишком большая размерность матрицы"
     }
 }

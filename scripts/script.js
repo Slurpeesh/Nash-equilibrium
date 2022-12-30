@@ -6,19 +6,20 @@ let langSelect = document.querySelector("select");
 //функция проверяет правильность ввода размерности матрицы, если данные введены верно, то возвращает true, иначе false
 function checkInput() {
     //значения количества строк и столбцов
-    rows = Number(rowsEl.value);
-    cols = Number(colsEl.value);
+    let rows = Number(rowsEl.value);
+    let cols = Number(colsEl.value);
+    let lang = langSelect.value;
     if (isNaN(rows) || isNaN(cols)) {
         rowsEl.value = "";
         colsEl.value = "";
-        alert("Неправильно введены значения размерности матрицы");
-        throw new Error("Неправильно введены значения размерности матрицы");
+        alert(langArr["matSizeError"][lang]);
+        throw new Error(langArr["matSizeError"]["en"]);
     };
     if (rows * cols > 10000) {
         rowsEl.value = "";
         colsEl.value = "";
-        alert("Слишком большая размерность матрицы");
-        throw new Error("Большая размерность матрицы");
+        alert(langArr["hugeMatSize"][lang]);
+        throw new Error(langArr["hugeMatSize"]["en"]);
     };
 };
 
@@ -62,6 +63,7 @@ function findAllErrors(m, i, j) {
 //функция, проверяющая правильность заполненности ячеек матриц, а также создающая глобальный объект, содержащий эти матрицы для рассчетов
 function checkMatrices() {
     matrices_object = {};
+    let lang = langSelect.value;
     for (m=1; m < 3; m++) {
         let matrix = [];
         for (i=0; i < rows; i++) {
@@ -72,8 +74,8 @@ function checkMatrices() {
                 if (isNaN(cell)) {
                     resetStyles();
                     findAllErrors(m, i, j);
-                    alert("Неправильно введены значения матрицы");
-                    throw new Error("Неправильно введены значения матрицы");
+                    alert(langArr["matValueError"][lang]);
+                    throw new Error(langArr["matValueError"]["en"]);
                 };
                 row.push(cell);
             };
@@ -87,7 +89,7 @@ function checkMatrices() {
 function clearMatrices() {
     let container1 = document.getElementById("container1");
     let container2 = document.getElementById("container2");
-    let findButton = document.getElementById("findButton")
+    let findButton = document.getElementById("findButton");
     if (container1 != null) {
         container1.remove();
         container2.remove();
@@ -119,6 +121,8 @@ function createMatrices() {
     matrix1.setAttribute("id", "matrix1");
     matrix2.setAttribute("id", "matrix2");
     //привязка класса для стилизации
+    rows = Number(rowsEl.value);
+    cols = Number(colsEl.value);
     matrix1.setAttribute("class", "matrix");
     matrix2.setAttribute("class", "matrix");
     matrix1.style.display = "grid";

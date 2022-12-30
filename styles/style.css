@@ -67,8 +67,8 @@ button {
   vertical-align: middle;
 }
 
-select > option:hover {
-  background-color: green;
+select {
+  font-size: calc(10px + 1.1vw);
 }
 
 p {
@@ -133,6 +133,10 @@ a > .social_link:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#dimensions-wrapper {
+  text-align: center;
 }
 
 #dimensionsAll {
