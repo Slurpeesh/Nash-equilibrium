@@ -3,9 +3,9 @@ let rowsEl = document.getElementById("rows");
 let colsEl = document.getElementById("columns");
 let langSelect = document.querySelector("select");
 
-//функция проверяет правильность ввода размерности матрицы, если данные введены верно, то возвращает true, иначе false
+//the function checks if the matrix dimension is entered correctly, if the data is correct, it returns true, otherwise false
 function checkInput() {
-    //значения количества строк и столбцов
+    //values of the number of rows and columns
     let rows = Number(rowsEl.value);
     let cols = Number(colsEl.value);
     let lang = langSelect.value;
@@ -23,9 +23,9 @@ function checkInput() {
     };
 };
 
-//функция, находящая все ошибки в заполнении матриц
+//a function that finds all errors in the matrices
 function findAllErrors(m, i, j) {
-    //допроверка строки i
+    //check to the end of row i
     for (j_=j; j_ < cols; j_++) {
         let cell = document.getElementById(`${m}/${i}/${j_}`);
         cell = Number(cell.value);
@@ -34,7 +34,7 @@ function findAllErrors(m, i, j) {
             cell.setAttribute("class", "errorCell");
         };
     };
-    //допроверка матрицы m
+    //check to the end of matrix m
     for (i_=i+1; i_ < rows; i_++) {
         for (j_=0; j_ < cols; j_++) {
             let cell = document.getElementById(`${m}/${i_}/${j_}`);
@@ -45,7 +45,7 @@ function findAllErrors(m, i, j) {
             };
         };
     };
-    //допроверка остальных матриц
+    //check to the end of remaining matrices
     for (m_=m+1; m_ < 3; m_++) {
         for (i_=0; i_ < rows; i_++) {
             for (j_=0; j_ < cols; j_++) {
@@ -60,7 +60,7 @@ function findAllErrors(m, i, j) {
     };
 };
 
-//функция, проверяющая правильность заполненности ячеек матриц, а также создающая глобальный объект, содержащий эти матрицы для рассчетов
+//a function that checks if the matrix cells are filled correctly and creates a global object that contains these matrices for calculations
 function checkMatrices() {
     matrices_object = {};
     let lang = langSelect.value;
@@ -85,7 +85,7 @@ function checkMatrices() {
     };
 };
 
-//функция, удаляющая элемент матрицы из html документа
+//function that removes a matrix element from an html document
 function clearMatrices() {
     let container1 = document.getElementById("container1");
     let container2 = document.getElementById("container2");
@@ -97,30 +97,30 @@ function clearMatrices() {
     };
 };
 
-//функция, создающая матрицы
+//function that creates matrices
 function createMatrices() {
     checkInput();
     clearMatrices();
-    //языковая адаптация
+    //language adaptation
     let lang = langSelect.value;
-    //создание заголовков
+    //creating headlines
     let para1 = document.createElement("h2");
     para1.setAttribute("class", "lang-matrix1");
     para1.textContent = langArr["matrix1"][lang];
     let para2 = document.createElement("h2");
     para2.setAttribute("class", "lang-matrix2");
     para2.textContent = langArr["matrix2"][lang];
-    //создание блоков, содержащих матрицы с их заголовками
+    //creating blocks containing matrices with their headlines
     let container1 = document.createElement("div");
     let container2 = document.createElement("div");
     container1.setAttribute("id", "container1");
     container2.setAttribute("id", "container2");
-    //создание матриц выигрышей первого и второго игрока
+    //creation of matrices of first and second player winnings
     let matrix1 = document.createElement("div");
     let matrix2 = document.createElement("div");
     matrix1.setAttribute("id", "matrix1");
     matrix2.setAttribute("id", "matrix2");
-    //привязка класса для стилизации
+    //class binding for styling
     rows = Number(rowsEl.value);
     cols = Number(colsEl.value);
     matrix1.setAttribute("class", "matrix");
@@ -129,40 +129,40 @@ function createMatrices() {
     matrix2.style.display = "grid";
     matrix1.style.setProperty("grid-template-columns", `repeat(${cols}, 40px)`);
     matrix2.style.setProperty("grid-template-columns", `repeat(${cols}, 40px)`);
-    //заполнение матриц ячейками
+    //filling matrices with cells
     for (i=0; i < rows; i++) {
         for (j=0; j < cols; j++) {
             inp1 = document.createElement("input");
             inp2 = document.createElement("input");
             inp1.setAttribute("type", "text");
             inp2.setAttribute("type", "text");
-            //создание искусственных индексов для алгоритма нахождения равновесий Нэша
+            //creation of artificial indices for the Nash equilibrium algorithm
             inp1.setAttribute("id", `1/${i}/${j}`);
             inp2.setAttribute("id", `2/${i}/${j}`);
             matrix1.appendChild(inp1);
             matrix2.appendChild(inp2);
         };
     };
-    //создание кнопки для нахождения равновесий Нэша
+    //creating a button for finding Nash equilibria
     let findButton = document.createElement("button");
     findButton.setAttribute("id", "findButton");
     findButton.setAttribute("class", "lang-findEquilibrium")
     findButton.textContent = langArr["findEquilibrium"][lang];
-    //привязываем слушатель событий при создании кнопки, которая находит равновесия Нэша
+    //binding the event listener when creating the button that finds the Nash equilibrium
     findButton.addEventListener("click", equilibriumNash);
-    //формирование блоков, содержащих матрицы с заголовками
+    //forming blocks containing matrices with headlines
     container1.appendChild(para1);
     container1.appendChild(matrix1);
     container2.appendChild(para2);
     container2.appendChild(matrix2);
-    //вывод элементов в html документ
+    //output elements in html document
     let mainBlock = document.querySelector("main");
     mainBlock.append(container1);
     mainBlock.append(container2);
     mainBlock.append(findButton);
-  };
+};
 
-//вспомогательная функция, возвращающая n-ый столбец матрицы
+//an auxiliary function that returns the nth column of the matrix
 function giveColumn(mat, n) {
     let col = [];
     for (row in mat) {
@@ -171,12 +171,12 @@ function giveColumn(mat, n) {
     return col;
 };
 
-//вспомогательная функция для нахождения максимума в массиве
+//is an auxiliary function for finding the maximum in the array
 function getMaxOfArray(array) {
     return Math.max.apply(null, array);
 };
 
-//функция, возвращающая пересечение двух массивов
+//function that returns the intersection of two arrays
 function intersection(array1, array2) {
     intersectionArray = [];
     for (i=0; i < array1.length; i++) {
@@ -189,7 +189,7 @@ function intersection(array1, array2) {
     return intersectionArray;
 };
 
-//сброс стилей ячеек матриц
+//reset matrix cell styles
 function resetStyles() {
     let equilibriums = document.getElementsByClassName("equilibrium");
     let errorCell = document.getElementsByClassName("errorCell");
@@ -201,7 +201,7 @@ function resetStyles() {
     };
 };
 
-//заливка ячеек матрицы с равновесием Нэша зеленым цветом
+//filling the cells of the matrix with Nash equilibrium in green
 function markUpGreen(indices_array) {
     indices_array.forEach(indices => {
         let index = indices.toString();
@@ -213,16 +213,16 @@ function markUpGreen(indices_array) {
     });
 };
 
-//алгоритм нахождения равновесий Нэша в биматричной игре
+//algorithm for finding Nash equilibria in a bimatrix game
 function equilibriumNash() {
-    //проверка на правильность заполненности ячеек матриц
+    //check for the correctness of the matrix cells
     checkMatrices();
-    //обнуление стилей
+    //style reset
     resetStyles();
-    //множества, хранящие индексы оптимальных ходов каждого из игроков
+    //sets storing the indices of the optimal moves of each of the players
     let optimum1 = new Set();
     let optimum2 = new Set();
-    //поиск оптимальных ходов первого игрока
+    //finding the optimal moves of the first player
     for (j=0; j < cols; j++) {
         col_j = giveColumn(matrices_object["matrix_array1"], j);
         let max_val = getMaxOfArray(col_j);
@@ -233,7 +233,7 @@ function equilibriumNash() {
             };
         };
     };
-    //поиск оптимальных ходов второго игрока
+    //finding the optimal moves of the second player
     for (i=0; i < rows; i++) {
         let row_i = matrices_object["matrix_array2"][i];
         let max_val = getMaxOfArray(row_i);
@@ -244,15 +244,15 @@ function equilibriumNash() {
             };
         };
     };
-    //находим пересечение множеств
+    //finding the intersection of the sets
     optimum1 = Array.from(optimum1);
     optimum2 = Array.from(optimum2);
     let equilibriums = intersection(optimum1, optimum2);
-    //подсвечиваем ячейки с равновесием зеленым цветом
+    //highlighting of the cells with Nash equilibrium in green
     markUpGreen(equilibriums);
 };
 
-//функция, которая меняет язык
+//function that changes the language
 function changeLanguage() {
     let lang = langSelect.value;
     document.title = langArr["title"][lang];
@@ -264,7 +264,7 @@ function changeLanguage() {
     };
 };
 
-//слушатель на нажатие кнопки "Принять"
+//listener to pressing the "Accept" button
 acceptButton.addEventListener("click", createMatrices);
-//слушатель смены языков
+//listener to changing the language
 langSelect.addEventListener("change", changeLanguage);

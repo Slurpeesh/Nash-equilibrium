@@ -1,4 +1,4 @@
-/*универсальные селекторы*/
+/*type selectors*/
 html {
   height: 100%;
   margin: 0;
@@ -11,7 +11,6 @@ body {
   min-height: 100%;
   margin: 0;
   background-color: lightgray;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -65,14 +64,17 @@ button {
   margin-left: 20px;
   font-size: 0.8rem;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 select {
   font-size: calc(10px + 1.1vw);
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 p {
-  font-size: calc(10px + 1vw);
+  font-size: calc(12px + 1vw);
   text-align: center;
   line-height: 1cm;
 }
@@ -82,7 +84,7 @@ footer > a {
   height: calc(0.75rem + 2vw);
 }
 
-/*селекторы классов*/
+/*class selectors*/
 .matrix {
   justify-content: center;
   justify-items: center;
@@ -102,12 +104,12 @@ a > .social_link:hover {
   transform: scale(1.08);
 }
 
-/*цвета ячеек с классом equilibrium*/
+/*colors of cells with the equilibrium class*/
 .equilibrium {
   background-color: lightgreen;
 }
 
-/*цвета ячеек с классом errorCell*/
+/*the colors of the cells with the errorCell class*/
 .errorCell {
   background-color: tomato;
 }
@@ -116,14 +118,14 @@ a > .social_link:hover {
   display: inline;
 }
 
-/*селекторы идентификаторов*/
+/*ID selectors*/
 #findButton {
   display: block;
   margin: 0 auto;
   margin-top: 40px;
 }
 
-/*стилизация ввода размерностей, чтобы не было разрыва при сужении или расширении экрана*/
+/*stylization of dimensional input, so that there is no tearing when narrowing or expanding the screen*/
 #dimensions {
   display: inline-block;
   vertical-align: middle;
